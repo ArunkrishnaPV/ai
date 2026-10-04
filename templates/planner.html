@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Planner - AI College Companion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">AI College Companion</div>
+        <ul class="nav-links">
+            <li><a href="/">Dashboard</a></li>
+            <li><a href="/study">Study Assistant</a></li>
+            <li><a href="/planner" class="active">Academic Planner</a></li>
+            <li><a href="/assignment">Assignment & Exam</a></li>
+            <li><a href="/progress">Progress & Skills</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div class="form-container">
+            <h2>Smart Academic Planner</h2>
+            <p style="margin-bottom: 2rem; color: #666;">Generate a personalized study schedule.</p>
+            
+            <form onsubmit="submitPlanner(event)">
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" placeholder="e.g., Database Management" required>
+                </div>
+                <div class="form-group">
+                    <label for="topics">Topics to Study</label>
+                    <input type="text" id="topics" placeholder="e.g., SQL, Normalization" required>
+                </div>
+                <div class="split-container">
+                    <div class="form-group">
+                        <label for="examDate">Exam Date</label>
+                        <input type="date" id="examDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hours">Available Study Hours</label>
+                        <input type="number" id="hours" min="1" placeholder="e.g., 10" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="difficulty">Difficulty Level</label>
+                    <select id="difficulty">
+                        <option value="Beginner">Beginner</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Advanced">Advanced</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Generate Plan</button>
+            </form>
+
+            <div id="loading" class="loading">Creating your perfect schedule... 📅</div>
+            
+            <div id="resultBox" class="result-box">
+                <h3>Your Study Plan</h3>
+                <p id="planContent"></p>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

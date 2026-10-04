@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Assistant - AI College Companion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">AI College Companion</div>
+        <ul class="nav-links">
+            <li><a href="/">Dashboard</a></li>
+            <li><a href="/study" class="active">Study Assistant</a></li>
+            <li><a href="/planner">Academic Planner</a></li>
+            <li><a href="/assignment">Assignment & Exam</a></li>
+            <li><a href="/progress">Progress & Skills</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div class="form-container">
+            <h2>AI Study Assistant</h2>
+            <p style="margin-bottom: 2rem; color: #666;">Ask any study-related question and get simple explanations.</p>
+            
+            <form onsubmit="submitStudyQuestion(event)">
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" placeholder="e.g., Java" required>
+                </div>
+                <div class="form-group">
+                    <label for="topic">Topic</label>
+                    <input type="text" id="topic" placeholder="e.g., OOP Concepts" required>
+                </div>
+                <div class="form-group">
+                    <label for="question">Your Question</label>
+                    <textarea id="question" rows="4" placeholder="e.g., Explain inheritance in simple words." required></textarea>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Ask AI</button>
+            </form>
+
+            <div id="loading" class="loading">Generating simple explanation... 🤖</div>
+            
+            <div id="resultBox" class="result-box">
+                <h3>Answer</h3>
+                <p id="answerContent"></p>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

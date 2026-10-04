@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress & Skills - AI College Companion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">AI College Companion</div>
+        <ul class="nav-links">
+            <li><a href="/">Dashboard</a></li>
+            <li><a href="/study">Study Assistant</a></li>
+            <li><a href="/planner">Academic Planner</a></li>
+            <li><a href="/assignment">Assignment & Exam</a></li>
+            <li><a href="/progress" class="active">Progress & Skills</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div class="split-container">
+            <!-- Add Data Section -->
+            <div class="form-container" style="margin: 0;">
+                <h2>Update Progress</h2>
+                <p style="margin-bottom: 2rem; color: #666;">Log your recent activities and skills.</p>
+                <form id="progressForm" onsubmit="submitProgress(event)">
+                    <div class="form-group">
+                        <label>Student Name</label>
+                        <input type="text" id="studentName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Completed Subject/Topic</label>
+                        <input type="text" id="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Recent Quiz Marks (%)</label>
+                        <input type="number" id="marks" min="0" max="100">
+                    </div>
+                    <div class="form-group">
+                        <label>New Skill Acquired</label>
+                        <input type="text" id="skill" placeholder="e.g., Python Basics">
+                    </div>
+                    <div class="form-group">
+                        <label>Skill Level</label>
+                        <select id="skillLevel">
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Advanced">Advanced</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Update Profile</button>
+                </form>
+            </div>
+
+            <!-- View Progress Section -->
+            <div class="form-container" style="margin: 0; background: #fafafa;">
+                <h2>Your Academic Profile</h2>
+                <div style="margin-top: 2rem;">
+                    <h3>Overall Progress: <span id="overallPercentage" style="color: #4a90e2;">0%</span></h3>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem;">
+                    <h3>Acquired Skills</h3>
+                    <ul id="skillsList" style="margin-top: 1rem; padding-left: 1.5rem; line-height: 1.8;">
+                        <!-- Injected via JS -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

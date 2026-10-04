@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment & Exam Assistant - AI College Companion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">AI College Companion</div>
+        <ul class="nav-links">
+            <li><a href="/">Dashboard</a></li>
+            <li><a href="/study">Study Assistant</a></li>
+            <li><a href="/planner">Academic Planner</a></li>
+            <li><a href="/assignment" class="active">Assignment & Exam</a></li>
+            <li><a href="/progress">Progress & Skills</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div class="split-container">
+            <!-- Assignment Section -->
+            <div class="form-container" style="margin: 0;">
+                <h2>Assignment Assistant</h2>
+                <p style="margin-bottom: 2rem; color: #666;">Get an outline and approach for your assignments.</p>
+                <form id="assignmentForm" onsubmit="submitAssignment(event)">
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <input type="text" id="asstSubject" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Assignment Topic</label>
+                        <input type="text" id="asstTopic" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Questions / Instructions</label>
+                        <textarea id="asstInstructions" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Get Assignment Guide</button>
+                </form>
+                <div id="asstLoading" class="loading">Analyzing assignment... 📝</div>
+                <div id="asstResultBox" class="result-box">
+                    <h3>Guide</h3>
+                    <p id="asstContent"></p>
+                </div>
+            </div>
+
+            <!-- Exam Section -->
+            <div class="form-container" style="margin: 0;">
+                <h2>Exam Assistant</h2>
+                <p style="margin-bottom: 2rem; color: #666;">Generate revision notes and important concepts.</p>
+                <form id="examForm" onsubmit="submitExam(event)">
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <input type="text" id="examSubject" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Topic</label>
+                        <input type="text" id="examTopic" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Exam Date</label>
+                        <input type="date" id="examDateField" required>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Get Revision Notes</button>
+                </form>
+                <div id="examLoading" class="loading">Preparing notes... 🎓</div>
+                <div id="examResultBox" class="result-box">
+                    <h3>Revision Points</h3>
+                    <p id="examContent"></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        async function submitAssignment(e) {
+            e.preventDefault();
+            const subject = document.getElementById('asstSubject').value;
+            const topic = document.getElementById('asstTopic').value;
+            const question = document.getElementById('asstInstructions').value;
+            
+            document.getElementById('asstLoading').style.display = 'block';
+            document.getElementById('asstResultBox').style.display = 'none';
+            
+            try {
+                const response = await fetch('/api/assignment', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({subject, topic, question})
+                });
+                const data = await response.json();
+                document.getElementById('asstLoading').style.display = 'none';
+                document.getElementById('asstResultBox').style.display = 'block';
+                document.getElementById('asstContent').innerHTML = data.help.replace(/\n/g, '<br>');
+            } catch (err) {
+                document.getElementById('asstLoading').style.display = 'none';
+                alert('Error fetching response');
+            }
+        }
+
+        async function submitExam(e) {
+            e.preventDefault();
+            const subject = document.getElementById('examSubject').value;
+            const topic = document.getElementById('examTopic').value;
+            const examDate = document.getElementById('examDateField').value;
+            
+            document.getElementById('examLoading').style.display = 'block';
+            document.getElementById('examResultBox').style.display = 'none';
+            
+            try {
+                const response = await fetch('/api/exam', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({subject, topic, examDate})
+                });
+                const data = await response.json();
+                document.getElementById('examLoading').style.display = 'none';
+                document.getElementById('examResultBox').style.display = 'block';
+                document.getElementById('examContent').innerHTML = data.revision.replace(/\n/g, '<br>');
+            } catch (err) {
+                document.getElementById('examLoading').style.display = 'none';
+                alert('Error fetching response');
+            }
+        }
+    </script>
+</body>
+</html>

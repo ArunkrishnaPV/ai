@@ -1,0 +1,16 @@
+{
+    "progress": {
+        "overall_percentage": 50,
+        "subjects": {
+            "java": "Completed (% in Quiz)",
+            "python": "Completed (% in Quiz)",
+            "pyhton": "Completed (46% in Quiz)"
+        },
+        "skills": [
+            {
+                "name": "java",
+                "level": "Beginner"
+            }
+        ]
+    }
+}

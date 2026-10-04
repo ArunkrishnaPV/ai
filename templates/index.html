@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI College Companion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Adding Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">AI College Companion</div>
+        <ul class="nav-links">
+            <li><a href="/" class="active">Dashboard</a></li>
+            <li><a href="/study">Study Assistant</a></li>
+            <li><a href="/planner">Academic Planner</a></li>
+            <li><a href="/assignment">Assignment & Exam</a></li>
+            <li><a href="/progress">Progress & Skills</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <header class="hero">
+            <h1>Welcome to AI College Companion</h1>
+            <p>Your Smart College Study Partner</p>
+        </header>
+
+        <div class="dashboard-grid">
+            <!-- Card 1 -->
+            <div class="card">
+                <div class="card-icon">📚</div>
+                <h2>AI Study Assistant</h2>
+                <p>Ask questions and get clear, simple AI-generated explanations for your subjects.</p>
+                <a href="/study" class="btn">Open Assistant</a>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card">
+                <div class="card-icon">📅</div>
+                <h2>Smart Academic Planner</h2>
+                <p>Generate personalized study schedules based on your exams and available time.</p>
+                <a href="/planner" class="btn">Open Planner</a>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <div class="card-icon">📝</div>
+                <h2>Assignment & Exam Assistant</h2>
+                <p>Get outlines, important points, and revision notes to ace your assignments and exams.</p>
+                <a href="/assignment" class="btn">Open Assistant</a>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card">
+                <div class="card-icon">📈</div>
+                <h2>Student Progress Tracker</h2>
+                <p>Track your skills, quiz marks, and overall academic progress in one place.</p>
+                <a href="/progress" class="btn">Open Tracker</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
